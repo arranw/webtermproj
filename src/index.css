@@ -12,3 +12,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.list-group-hover .list-group-item:hover {
+  background-color: aqua;
+}
