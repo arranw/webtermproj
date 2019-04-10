@@ -1,15 +1,18 @@
 import React, { Component } from "react";
+import WellSearch2 from "./WellSearch2";
 
 class WellSearch extends Component {
   state = {
+    wellFound: false,
     selectedWell: {},
     productionData: [],
-    searchInput: ""
+    searchInput: "",
+    location: ""
   };
 
   findWell() {
     const xhr = new XMLHttpRequest();
-    const selectedWell = {};
+    const searchWell = {};
     const search = this.state.searchInput;
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
@@ -20,7 +23,7 @@ class WellSearch extends Component {
         for (let i = 0; i < records.length; i++) {
           if (records[i].children[0].value.trim() === search) {
             for (let j = 0; j < records[i].children.length; j++) {
-              selectedWell[records[i].children[j].name] =
+              searchWell[records[i].children[j].name] =
                 records[i].children[j].value;
             }
           }
@@ -29,15 +32,22 @@ class WellSearch extends Component {
     };
     xhr.open("GET", "res/welldata.xml", true);
     xhr.send();
-    this.setState({ selectedWell });
+    this.setState({
+      selectedWell: searchWell,
+      wellFound: true,
+      location: searchWell.location
+    });
   }
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     let searchResult = <span>{this.state.selectedWell.location}</span>;
     return (
       <div className="container">
+        <WellSearch2 />
         <div className="card">
           <div className="card-header">
             <h3>Alberta Township Well Search</h3>
@@ -69,7 +79,7 @@ class WellSearch extends Component {
                 />
               </div>
             </div>
-            {searchResult}
+            {this.state.wellFound ? this.state.location : ""}
           </div>
         </div>
       </div>
