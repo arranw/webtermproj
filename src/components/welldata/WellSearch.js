@@ -36,10 +36,27 @@ export default function WellSearch2() {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const xmldoc = xhr.responseText;
+        const lines = xmldoc.split("\n");
+        let xd = '<?xml version="1.0" encoding="UTF-8"?>\n<wellproductiondata>';
+        let yd = '<?xml version="1.0" encoding="UTF-8"?>\n<wellproductiondata>';
+        for (let i = 2; i < lines.length - 1; i++) {
+          if (i < lines.length / 2) {
+            xd += lines[i] + "\n";
+          } else {
+            yd += lines[i] + "\n";
+          }
+        }
+
+        xd += "</wellproductiondata>";
+        yd += "</wellproductiondata>";
+
         var XMLParser = require("react-xml-parser");
-        var x = new XMLParser().parseFromString(xmldoc);
-        const records = x.getElementsByTagName("productiondata");
-        for (let i = 0; i < 700; i++) {
+        var x = new XMLParser().parseFromString(xd);
+        var y = new XMLParser().parseFromString(yd);
+        const records = [];
+        records.push(...y.getElementsByTagName("productiondata"));
+        records.push(...x.getElementsByTagName("productiondata"));
+        for (let i = 0; i < records.length; i++) {
           const obj = {};
           for (let j = 0; j < records[i].children.length; j++) {
             obj[records[i].children[j].name] = records[i].children[j].value;
@@ -112,7 +129,7 @@ export default function WellSearch2() {
                   <th>Gas Production</th>
                 </tr>
                 {matchingProductions.map(production => (
-                  <tr>
+                  <tr key={matchingProductions.indexOf(production)}>
                     <td>{production.location}</td>
                     <td>{production.date}</td>
                     <td>{production.oilproduction}</td>
