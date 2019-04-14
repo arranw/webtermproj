@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import classnames from "classnames";
 
 class AppNavBar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-md navbar-dark bg-primary mb-4">
+      <nav
+        className={classnames(
+          "navbar navbar-expand-md navbar-dark bg-primary ",
+          { "mb-4": this.props.history.location.pathname !== "/rentalcar" }
+        )}
+      >
         <div className="container">
           <Link to="/" className="navbar-brand">
             CPRG-256 Final Project
@@ -42,4 +48,4 @@ class AppNavBar extends Component {
   }
 }
 
-export default AppNavBar;
+export default withRouter(AppNavBar);

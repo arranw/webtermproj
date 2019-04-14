@@ -1,0 +1,17 @@
+.list-hover:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.input-group-prepend,
+.input-group-text {
+  width: 100px;
+}
+
+figure:hover {
+  background-color: lightgray;
+}
+
+button {
+  width: 25%;
+}

@@ -7,6 +7,7 @@ import Dashboard from "./components/layout/Dashboard";
 import AppNavBar from "./components/layout/AppNavBar";
 import WellSearch from "./components/welldata/WellSearch";
 import RentalCar from "./components/rentalcar/RentalCar";
+import Rental from "./components/rentalcar/Rental";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/welldata" component={WellSearch} />
               <Route exact path="/rentalcar" component={RentalCar} />
+              <Route exact path="/rentalcar/rental" component={Rental} />
             </Switch>
           </div>
         </Router>
