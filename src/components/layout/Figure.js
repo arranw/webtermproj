@@ -13,7 +13,10 @@ export default function Figure(props) {
     >
       <img src={imgSrc} alt={imgCaption} style={{ width: "100%" }} />
       <figcaption className="text-center">
-        <h5>{imgCaption}</h5>
+        <h5>
+          {imgCaption}
+          <small> ${cost}/day</small>
+        </h5>
       </figcaption>
     </figure>
   );

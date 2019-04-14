@@ -18,9 +18,9 @@ export default function Rental() {
 
   const [selectedCar, setSelectedCar] = useState({ name: "", value: 0 });
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [optionsTotal, setOptionsTotal] = useState(0);
   const [openModal, setOpenModal] = useState(false);
 
+  const [summary, setSummary] = useState({});
   const [formItems, setFormItems] = useState({
     lastName: "",
     firstName: "",
@@ -29,8 +29,6 @@ export default function Rental() {
     email: "",
     phone: ""
   });
-
-  const [summary, setSummary] = useState({});
 
   const cars = [
     {
@@ -128,8 +126,18 @@ export default function Rental() {
   const toggleOption = option => {
     let optionsCopy = JSON.parse(JSON.stringify(selectedOptions));
     optionsCopy[option] = !optionsCopy[option];
-
     setSelectedOptions(optionsCopy);
+    console.log(selectedOptions);
+  };
+
+  const packSummary = () => {
+    const summaryObject = {
+      formItems,
+      selectedCar,
+      selectedOptions,
+      days
+    };
+    setSummary(summaryObject);
   };
 
   return (
@@ -251,8 +259,9 @@ export default function Rental() {
           <div className="row">
             <button
               className="btn btn-primary form-control mt-2"
-              disabled={!selectedClient || !selectedCar}
+              disabled={!selectedClient || !selectedCar.name}
               onClick={() => {
+                packSummary();
                 setOpenModal(true);
               }}
             >
