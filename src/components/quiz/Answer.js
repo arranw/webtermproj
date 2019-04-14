@@ -14,7 +14,9 @@ export default function Answer(props) {
       }}
     >
       <div className="row">
-        <div className="col-md-11">A. {text}</div>
+        <div className="col-md-11">
+          {letter}. {text}
+        </div>
         <div className="col-md-1">
           <i
             className={classnames({

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import store from "./store";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import Dashboard from "./components/layout/Dashboard";
 import AppNavBar from "./components/layout/AppNavBar";
