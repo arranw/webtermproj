@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/webtermproj/static/js/runtime~main.6207ca80.js"
   },
   {
-    "revision": "a94725b16a6167381f4b",
-    "url": "/webtermproj/static/js/main.a94725b1.chunk.js"
+    "revision": "29b78d8ae4904c253b29",
+    "url": "/webtermproj/static/js/main.29b78d8a.chunk.js"
   },
   {
     "revision": "c84cb7cd7dec3ca8069f",
     "url": "/webtermproj/static/js/1.c84cb7cd.chunk.js"
   },
   {
-    "revision": "a94725b16a6167381f4b",
+    "revision": "29b78d8ae4904c253b29",
     "url": "/webtermproj/static/css/main.b2d01ea2.chunk.css"
   },
   {
-    "revision": "b360c842ab214d0b15d281b8de308508",
+    "revision": "6073fe92bf3a2fd0715f8dbfa1f85bec",
     "url": "/webtermproj/index.html"
   }
 ];
