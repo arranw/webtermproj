@@ -1,14 +1,14 @@
 import React from "react";
-import loading from "./loading.gif";
 
 export default function Loading() {
   return (
     <div>
       <img
-        src={loading}
+        src="/webtermproj/res/pics/loading.gif"
         alt="Loading..."
         style={{ width: "200px", margin: "auto", display: "block" }}
       />
+      s
     </div>
   );
 }

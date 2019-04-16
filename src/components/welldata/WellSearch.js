@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 
+import Loading from "../layout/Loading";
+
 export default function WellSearch2() {
   const [searchValue, setSearchValue] = useState("");
   const [error, setError] = useState("");
@@ -9,6 +11,7 @@ export default function WellSearch2() {
   const [productions, setProductions] = useState([]);
   const [matchingProductions, setMatchingProductions] = useState([]);
 
+  const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     loadLocations();
     loadProductions();
@@ -63,6 +66,7 @@ export default function WellSearch2() {
           }
           prods.push(obj);
         }
+        setDataLoaded(true);
       }
     };
     setProductions(prods);
@@ -89,59 +93,63 @@ export default function WellSearch2() {
     setLocations(locs);
   };
 
-  return (
-    <div className="container">
-      <div className="card">
-        <div className="card-header">
-          <h3>Alberta Township Well Search</h3>
-        </div>
-        <div className="card-body">
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <label
-                className={classnames("input-group-text", {
-                  "text-danger border-danger": error
-                })}
-                htmlFor="search"
-              >
-                Well Location
-              </label>
-            </div>
-            <input
-              className={classnames("form-control", { "is-invalid": error })}
-              type="text"
-              id="search"
-              value={searchValue}
-              onChange={e => setSearchValue(e.target.value)}
-            />
+  if (dataLoaded) {
+    return (
+      <div className="container">
+        <div className="card">
+          <div className="card-header">
+            <h3>Alberta Township Well Search</h3>
           </div>
-          <h3 className="text-danger text-center">
-            {error !== "" ? error : ""}
-          </h3>
-          {matchingProductions ? (
-            <table style={{ tableLayout: "fixed" }} className="table">
-              <tbody>
-                <tr>
-                  <th>Location</th>
-                  <th>Date</th>
-                  <th>Oil Production</th>
-                  <th>Water Production</th>
-                  <th>Gas Production</th>
-                </tr>
-                {matchingProductions.map(production => (
-                  <tr key={matchingProductions.indexOf(production)}>
-                    <td>{production.location}</td>
-                    <td>{production.date}</td>
-                    <td>{production.oilproduction}</td>
-                    <td>{production.waterproduction}</td>
-                    <td>{production.gasproduction}</td>
+          <div className="card-body">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <label
+                  className={classnames("input-group-text", {
+                    "text-danger border-danger": error
+                  })}
+                  htmlFor="search"
+                >
+                  Well Location
+                </label>
+              </div>
+              <input
+                className={classnames("form-control", { "is-invalid": error })}
+                type="text"
+                id="search"
+                value={searchValue}
+                onChange={e => setSearchValue(e.target.value)}
+              />
+            </div>
+            <h3 className="text-danger text-center">
+              {error !== "" ? error : ""}
+            </h3>
+            {matchingProductions ? (
+              <table style={{ tableLayout: "fixed" }} className="table">
+                <tbody>
+                  <tr>
+                    <th>Location</th>
+                    <th>Date</th>
+                    <th>Oil Production</th>
+                    <th>Water Production</th>
+                    <th>Gas Production</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : null}
+                  {matchingProductions.map(production => (
+                    <tr key={matchingProductions.indexOf(production)}>
+                      <td>{production.location}</td>
+                      <td>{production.date}</td>
+                      <td>{production.oilproduction}</td>
+                      <td>{production.waterproduction}</td>
+                      <td>{production.gasproduction}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : null}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <Loading />;
+  }
 }

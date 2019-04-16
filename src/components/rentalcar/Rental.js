@@ -32,22 +32,22 @@ export default function Rental() {
 
   const cars = [
     {
-      imgSrc: "/res/pics/compact.png",
+      imgSrc: "/webtermproj/res/pics/compact.png",
       imgCaption: "Compact",
       cost: 20
     },
     {
-      imgSrc: "/res/pics/midsize.png",
+      imgSrc: "/webtermproj/res/pics/midsize.png",
       imgCaption: "Mid-Size",
       cost: 25
     },
     {
-      imgSrc: "/res/pics/luxury.png",
+      imgSrc: "/webtermproj/res/pics/luxury.png",
       imgCaption: "Luxury",
       cost: 35
     },
     {
-      imgSrc: "/res/pics/pickup.png",
+      imgSrc: "/webtermproj/res/pics/pickup.png",
       imgCaption: "Pickup",
       cost: 40
     }
@@ -118,7 +118,7 @@ export default function Rental() {
         setClients(JSON.parse(xhr.responseText));
       }
     };
-    xhr.open("GET", "/res/rentalclients.json", true);
+    xhr.open("GET", "res/rentalclients.json", true);
     xhr.send();
     setDataLoaded(true);
   }, []);

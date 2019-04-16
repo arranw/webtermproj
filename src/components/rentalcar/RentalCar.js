@@ -9,7 +9,7 @@ export default class RentalCar extends Component {
         className="pt-3"
         style={{
           height: "100vh",
-          backgroundImage: "URL(/res/carbg.jpg)",
+          backgroundImage: "URL(/webtermproj/res/carbg.jpg)",
           backgroundSize: "100% 100%",
           position: "relative"
         }}

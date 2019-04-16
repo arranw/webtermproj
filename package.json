@@ -1,7 +1,7 @@
 {
-  "name": "256-finalproject",
+  "name": "webtermproj",
   "version": "0.1.0",
-  "homepage": "https://arranw.github.io/256-finalproject",
+  "homepage": "https://arranw.github.io/webtermproj",
   "private": true,
   "dependencies": {
     "camelcase": "^5.3.1",
